@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	<insert id="memberjoininsertDB" parameterType="memberdto">
+		INSERT INTO
+		MEMBER210521(mid,mpassword,mname,memail)
+		values(#{mid},#{mpassword},#{mname},#{memail})
+	</insert>
+
+	<select id="memberlistDB" resultType="memberdto">
+		select * from member210521 order by mid desc
+	</select>
+	
+	<select id="memberview" resultType="memberdto" parameterType="String">
+	<!-- 삽입이 있는 경우에 parameterType이 존재해야 하고 출력(반환)의 기능이 있는 경우 resultType이 존재해야 한다. -->
+		select * from member210521 where mid = #{mid}
+	</select>
+	
+
+</mapper>
