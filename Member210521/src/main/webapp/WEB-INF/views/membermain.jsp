@@ -31,10 +31,6 @@
 	<!-- 세션에 저장한 값 출력 -->
 	로그인아이디 : ${sessionScope.loginMember}<br>
 	
-	
-	
-
-
 
 	<h2>${sessionScope.loginMember}님반갑습니다!</h2>
 
