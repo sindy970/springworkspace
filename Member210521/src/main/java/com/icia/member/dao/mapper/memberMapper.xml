@@ -5,17 +5,40 @@
 <mapper namespace="member">
 	<insert id="memberjoininsertDB" parameterType="memberdto">
 		INSERT INTO
-		MEMBER210521(mid,mpassword,mname,memail)
+		MEMBER210525(mid,mpassword,mname,memail)
 		values(#{mid},#{mpassword},#{mname},#{memail})
 	</insert>
 
 	<select id="memberlistDB" resultType="memberdto">
-		select * from member210521 order by mid desc
+		select * from member210525 order by mid desc
 	</select>
 	
 	<select id="memberview" resultType="memberdto" parameterType="String">
 	<!-- 삽입이 있는 경우에 parameterType이 존재해야 하고 출력(반환)의 기능이 있는 경우 resultType이 존재해야 한다. -->
-		select * from member210521 where mid = #{mid}
+		select * from member210525 where mid = #{mid}
+	</select>
+	
+	<!-- mid,mpassword가 모두 만족하는 값이 있어야 반환되는 mid값이 존재하는 것이다. -->
+	<select id="memberlogin" parameterType="memberdto" resultType="String">
+		select mid from member210525 where mid=#{mid} and mpassword=#{mpassword}
+	</select>
+
+<!-- 회원의 전체 정보를 가져오면 되기 때문에 memberview로 만들어놓은 select문과 동일하기 때문에 같이 사용해도 상관은 없다. -->
+	<select id="memberupdate" parameterType="String" resultType="memberdto">
+		select * from member210525 where mid=#{loginId}
+	</select>
+	
+	<!-- 수정한 이메일값 DB에 반영하기 -->
+	<update id="updateprocess" parameterType="memberdto">
+		update member210525 set memail=#{memail} where mid=#{mid}
+	</update>
+	
+	<delete id="memberdelete" parameterType="String">
+		delete from member210525 where mid=#{mid}
+	</delete>
+	
+	<select id="idcheck" parameterType="String" resultType="String">
+		select mid from member210525 where mid=#{mid}
 	</select>
 	
 
