@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="bm"> 
+	<insert id="boardwrite" parameterType="boarddto">
+		insert into board210527(bnumber,btitle,bpassword,bwriter,bcontents,bdate,bhits)
+					values(board_SEQ.nextval,#{btitle},#{bpassword},#{bwriter},#{bcontents},sysdate,0)
+	</insert>
+	
+	<select id="boardlist" resultType="boarddto">
+		select * from board210527
+	</select>
+	
+	<update id="boardhits" parameterType="int">
+		update board210527 set bhits=bhits+1 where bnumber=#{bnumber}
+	</update>
+	
+	<select id="boardview" parameterType="int" resultType="boarddto">
+		select * from board210527 where bnumber=#{bnumber}
+	</select>
+	
+ </mapper>
