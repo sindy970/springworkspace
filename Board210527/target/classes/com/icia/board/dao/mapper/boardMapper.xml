@@ -11,13 +11,17 @@
 		select * from board2210527
 	</select>
 	
-	<update id="boardupdate" parameterType="int">
-		update board2210527 set bhits=${bhits} where bnumber = ${bnumber}
+	<update id="boardbhits" parameterType="int">
+		update board2210527 set bhits=bhits+1 where bnumber=#{bnumber}
 	</update>
 
 	<select id="boardviewDB" resultType="boarddto" parameterType="int">
 		select * from board2210527 where bnumber = #{bnumber}
 	</select>
+	
+	<update id="boardprocess" parameterType="int">
+		update board2210527 set btitle=#{btitle} , bcontents=#{bcontents} where bnumber = #{bnumber} 
+	</update>
 	
 	
  </mapper>

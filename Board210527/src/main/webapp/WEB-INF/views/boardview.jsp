@@ -11,6 +11,13 @@
 		border-collapse: collapse; 
 	}
 </style>
+
+<script type="text/javascript">
+	function update() {
+		console.log("update페이지입니다.")
+		location.href = "boardupdate?bnumber=" + ${bnum.bnumber};
+	}
+</script>
 </head>
 <body>
 	<h2>boardview.jsp페이지 입니다.</h2>
@@ -36,5 +43,8 @@
 </table>
 <a href="./">홈으로</a>
 <a href="boardlist">목록으로 돌아가기</a>
+
+<!-- 수정버튼 만들고 수정기능 구현하기 -->
+<button onclick="update()">수정하기</button>
 </body>
 </html>

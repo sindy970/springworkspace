@@ -46,4 +46,45 @@ public class BoardController {
 		return mav;
 	}
 
+	//수정하기와 관련한 주소 처리
+	@RequestMapping(value = "/boardupdate")
+	public ModelAndView boardUpdate(@RequestParam("bnumber") int bnumber) {
+		mav = bs.boardUpdate(bnumber);
+		return mav;
+	}
+	
+	@RequestMapping(value="/updateprocess")
+	public ModelAndView boardprocess(@RequestParam("bnumber") int bnumber) {
+		mav = bs.boardProcess(bnumber);
+		return mav;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+

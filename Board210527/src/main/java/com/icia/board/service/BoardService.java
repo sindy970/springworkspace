@@ -2,6 +2,8 @@ package com.icia.board.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +16,9 @@ public class BoardService {
 
 	@Autowired
 	private BoardDAO bdao;
+	
+	@Autowired
+	private HttpSession session;
 	
 	private ModelAndView mav;
 	private int count = 0;
@@ -45,6 +50,8 @@ public class BoardService {
 	public ModelAndView boardView(int bnumber) {
 		mav = new ModelAndView();
 		
+		bdao.boardHits(bnumber);
+		
 		BoardDTO bnum = bdao.boardView(bnumber);
 		
 		mav.addObject("bnum", bnum);
@@ -53,7 +60,30 @@ public class BoardService {
 		return mav;
 	}
 
-	
+
+
+	public ModelAndView boardUpdate(int bnumber) {
+		mav = new ModelAndView();
+		BoardDTO update = bdao.boardUpdate(bnumber);
+		
+		mav.addObject("update", update);
+		mav.setViewName("boardupdate");
+		return mav;
+	}
+
+	public ModelAndView boardProcess(int bnumber) {
+		mav = new ModelAndView();
+		int check = bdao.boardProcess(bnumber);
+		if(check > 0) {
+			//수정 성공
+			mav.setViewName("redirect:/boardview?bnumber=" + bnumber);
+		} else {
+			//수정 실패
+			mav.setViewName("boardupdate?bnumber="+bnumber);
+		}
+		return mav;
+	}
+
 	
 	
 

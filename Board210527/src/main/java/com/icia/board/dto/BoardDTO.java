@@ -9,6 +9,7 @@ public class BoardDTO {
 	private String bcontents; 
 	private String bdate;
 	private int bhits;
+	
 	public int getBnumber() {
 		return bnumber;
 	}
