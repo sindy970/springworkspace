@@ -2,7 +2,9 @@ package com.icia.board2.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.board2.dao.BoardDAO;
+import com.icia.board2.dao.CommentDAO;
 import com.icia.board2.dto.BoardDTO;
+import com.icia.board2.dto.CommentDTO;
 import com.icia.board2.dto.PageDTO;
 
 @Service
@@ -18,6 +22,9 @@ public class BoardService {
 	
 	@Autowired
 	private BoardDAO bdao;
+	
+	@Autowired
+	private CommentDAO cdao;
 	
 	private ModelAndView mav;
 
@@ -99,6 +106,11 @@ public class BoardService {
 		
 		//상세보기 후 목록으로 돌아갈때 현재 페이지를 유지하기 위해 page도 같이 가져간다.
 		mav.addObject("page", page);
+		
+		//boardview.jsp를 열 때 DB에 저장된 댓글 리스트도 함께 가져간다.
+		//목록에서 상세조회 했을 경우 기존에 있는 댓글을 모두 함께 출력해 주기 위해서 처리하는 코딩부분이다.
+		List<CommentDTO> commentList = cdao.commentList(bnumber);
+		mav.addObject("commentList", commentList);
 		
 		mav.addObject("board", board);
 		mav.setViewName("boardview");
@@ -196,6 +208,27 @@ public class BoardService {
 		mav.addObject("paging", paging);
 		mav.addObject("boardList", boardList);
 		mav.setViewName("boardlistpaging");
+		
+		return mav;
+	}
+
+	public ModelAndView boardSearch(String searchType, String keyword) {
+		mav = new ModelAndView();
+		
+		//map을 사용하여 mapper로 전달한다. (매개변수가 한개가 아닌 여러개인 경우에 묶어서 DAO로 보내기 위해서 사용한다.)
+		Map<String, String> searchMap = new HashMap<String, String>();
+		//Map은 반드시 두가지 타입으로 선언해야 한다. <키값의 데이터 타입, value값의 데이터 타입>으로 분리한다.
+		//키 => 어떤데이터를 담아놓은 공간
+		//value => 실질적인 데이터
+		//put(키값,value값); => 데이터를 저장할 때 사용되는 함수이다.
+		searchMap.put("type", searchType);
+		searchMap.put("word", keyword);
+		
+		List<BoardDTO> boardList = bdao.boardSearch(searchMap);
+		//파라미터 하나만 DAO로 보낼 수 있기때문에 map을 이용하여 묶어준 것이다.
+		
+		mav.addObject("boardList",boardList);
+		mav.setViewName("boardlist");
 		
 		return mav;
 	}

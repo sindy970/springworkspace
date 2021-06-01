@@ -15,6 +15,17 @@
 </head>
 <body>
 	<h2>boardlistpaging.jsp</h2>
+	
+	<!-- 검색창 만들기 -->
+	<form action="search" method="get">
+		<select name="searchtype">
+			<option value="btitle">제목</option>
+			<option value="bwriter">작성자</option>
+		</select>
+		<input type="text" name="keyword" placeholder="검색어를입력하세요">
+		<input type="submit" value="검색">
+	</form>
+	
 	<table>
 		<tr>
 		<th>글번호</th>

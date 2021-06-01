@@ -42,4 +42,32 @@
 			AS RN FROM BOARD210527 B) WHERE RN BETWEEN #{startRow} AND #{endRow} 
 	</select>
 	
+	<select id="boardsearch" parameterType="java.util.HashMap" resultType="boarddto">
+		select * from board210527
+			<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test="type=='btitle'">
+				where btitle like '%'||#{word}||'%'
+			</when>
+		</choose>
+		<choose>
+			<when test="type=='bwriter'">
+				where bwriter like '%'||#{word}||'%'
+			</when>
+		</choose>
+	</sql>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  </mapper>
