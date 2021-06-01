@@ -34,5 +34,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="writepage">글쓰기 화면</a>
 </body>
 </html>

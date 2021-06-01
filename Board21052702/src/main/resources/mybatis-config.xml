@@ -4,6 +4,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.icia.board2.dto.BoardDTO" alias="boarddto"/>
+		<typeAlias type="com.icia.board2.dto.PageDTO" alias="pagedto"/>
 	</typeAliases>
 </configuration>
  

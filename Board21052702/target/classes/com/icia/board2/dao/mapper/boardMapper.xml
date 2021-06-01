@@ -8,6 +8,11 @@
 					values(board_SEQ.nextval,#{btitle},#{bpassword},#{bwriter},#{bcontents},sysdate,0)
 	</insert>
 	
+	<insert id="boardwritefile" parameterType="boarddto">
+		insert into board210527(bnumber,btitle,bpassword,bwriter,bcontents,bdate,bhits,bfilename)
+					values(board_SEQ.nextval,#{btitle},#{bpassword},#{bwriter},#{bcontents},sysdate,0,#{bfilename})		
+	</insert>
+	
 	<select id="boardlist" resultType="boarddto">
 		select * from board210527
 	</select>
@@ -18,6 +23,23 @@
 	
 	<select id="boardview" parameterType="int" resultType="boarddto">
 		select * from board210527 where bnumber=#{bnumber}
+	</select>
+	
+	<update id="boardupdate" parameterType="boarddto">
+		update board210527 set btitle=#{btitle},bcontents=#{bcontents} where bnumber=${bnumber}
+	</update>
+	
+	<delete id="boarddelete" parameterType="int">
+		delete from board210527 where bnumber = #{bnumber}
+	</delete>
+	
+	<select id="listcount" resultType="int">
+		select count(bnumber) from board210527
+	</select>
+	
+	<select id="boardpaging" parameterType="pagedto" resultType="boarddto">
+		SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNUMBER DESC)
+			AS RN FROM BOARD210527 B) WHERE RN BETWEEN #{startRow} AND #{endRow} 
 	</select>
 	
  </mapper>
