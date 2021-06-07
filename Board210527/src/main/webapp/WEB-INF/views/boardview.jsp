@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 	table,tr,th,td {
@@ -14,22 +14,22 @@
 
 <script type="text/javascript">
 	function update() {
-		console.log("updateÆäÀÌÁöÀÔ´Ï´Ù.")
+		console.log("updateí˜ì´ì§€ì…ë‹ˆë‹¤.")
 		location.href = "boardupdate?bnumber=" + ${bnum.bnumber};
 	}
 </script>
 </head>
 <body>
-	<h2>boardview.jspÆäÀÌÁö ÀÔ´Ï´Ù.</h2>
+	<h2>boardview.jspí˜ì´ì§€ ì…ë‹ˆë‹¤.</h2>
 	<table>
 <tr>
-	<th>±Û¹øÈ£</th>
-	<th>±ÛÁ¦¸ñ</th>
-	<th>±Ûºñ¹Ğ¹øÈ£</th>
-	<th>ÀÛ¼ºÀÚ</th>
-	<th>³»¿ë</th>
-	<th>ÀÛ¼ºÀÏÀÚ</th>
-	<th>Á¶È¸¼ö</th>
+	<th>ê¸€ë²ˆí˜¸</th>
+	<th>ê¸€ì œëª©</th>
+	<th>ê¸€ë¹„ë°€ë²ˆí˜¸</th>
+	<th>ì‘ì„±ì</th>
+	<th>ë‚´ìš©</th>
+	<th>ì‘ì„±ì¼ì</th>
+	<th>ì¡°íšŒìˆ˜</th>
 </tr>
 <tr>
 	<td>${bnum.bnumber}</td>
@@ -41,10 +41,10 @@
 	<td>${bnum.bhits}</td>
 </tr>
 </table>
-<a href="./">È¨À¸·Î</a>
-<a href="boardlist">¸ñ·ÏÀ¸·Î µ¹¾Æ°¡±â</a>
+<a href="./">í™ˆìœ¼ë¡œ</a>
+<a href="boardlist">ëª©ë¡ìœ¼ë¡œ ëŒì•„ê°€ê¸°</a>
 
-<!-- ¼öÁ¤¹öÆ° ¸¸µé°í ¼öÁ¤±â´É ±¸ÇöÇÏ±â -->
-<button onclick="update()">¼öÁ¤ÇÏ±â</button>
+<!-- ìˆ˜ì •ë²„íŠ¼ ë§Œë“¤ê³  ìˆ˜ì •ê¸°ëŠ¥ êµ¬í˜„í•˜ê¸° -->
+<button onclick="update()">ìˆ˜ì •í•˜ê¸°</button>
 </body>
 </html>

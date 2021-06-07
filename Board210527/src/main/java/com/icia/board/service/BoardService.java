@@ -71,15 +71,15 @@ public class BoardService {
 		return mav;
 	}
 
-	public ModelAndView boardProcess(int bnumber) {
+	public ModelAndView boardProcess(BoardDTO board) {
 		mav = new ModelAndView();
-		int check = bdao.boardProcess(bnumber);
+		int check = bdao.boardProcess(board);
 		if(check > 0) {
 			//수정 성공
-			mav.setViewName("redirect:/boardview?bnumber=" + bnumber);
+			mav.setViewName("redirect:/boardview?bnumber=" + board.getBnumber());
 		} else {
 			//수정 실패
-			mav.setViewName("boardupdate?bnumber="+bnumber);
+			mav.setViewName("boardupdate?bnumber="+board.getBnumber());
 		}
 		return mav;
 	}

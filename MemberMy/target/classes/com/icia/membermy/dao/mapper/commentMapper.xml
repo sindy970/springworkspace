@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="comment"> 
+ 
+	<insert id="commentwrite" parameterType="commentdto">
+		insert into commentmy(cnumber,cbnumber,cwriter,ccontents) values(commentmy_SEQ.nextval,#{cbnumber},#{cwriter},#{ccontents})
+	</insert>
+	
+	<select id="commentlist" parameterType="int" resultType="commentdto">
+		select * from commentmy where cbnumber=#{cbnumber} order by cnumber desc
+	</select>
+	
+ </mapper>

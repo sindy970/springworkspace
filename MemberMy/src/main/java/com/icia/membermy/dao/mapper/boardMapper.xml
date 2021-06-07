@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="board"> 
+	<insert id="boardwritefile" parameterType="boarddto">
+		insert into boardmy(bnumber,bwriter,btitle,bcontents,bfilename)
+					values(board_SEQ.nextval,#{bwriter},#{btitle},#{bcontents},#{bfilename})		
+	</insert>
+	
+	<select id="boardlist" resultType="boarddto">
+		select * from boardmy
+	</select>
+	
+	<select id="boardview" parameterType="int" resultType="boarddto">
+		select * from boardmy where bnumber=#{bnumber}
+	</select>
+	
+	<update id="boardupdate" parameterType="boarddto">
+		update boardmy set btitle=#{btitle},bcontents=#{bcontents} where bnumber=${bnumber}
+	</update>
+	
+	<delete id="boarddelete" parameterType="int">
+		delete from boardmy where bnumber = #{bnumber}
+	</delete>
+	
+	<select id="listcount" resultType="int">
+		select count(bnumber) from boardmy
+	</select>
+	
+	<select id="boardpaging" parameterType="pagedto" resultType="boarddto">
+		SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNUMBER DESC)
+			AS RN FROM boardmy B) WHERE RN BETWEEN #{startRow} AND #{endRow} 
+	</select>
+	
+	<select id="boardsearch" parameterType="java.util.HashMap" resultType="boarddto">
+		select * from boardmy
+			<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test="type=='btitle'">
+				where btitle like '%'||#{word}||'%'
+			</when>
+		</choose>
+		<choose>
+			<when test="type=='bwriter'">
+				where bwriter like '%'||#{word}||'%'
+			</when>
+		</choose>
+	</sql>
+	
+ </mapper>

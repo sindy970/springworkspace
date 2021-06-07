@@ -39,8 +39,8 @@ public class BoardDAO {
 		return sql.selectOne("board.boardviewDB", bnumber);
 	}
 
-	public int boardProcess(int bnumber) {
-		return sql.update("board.boardprocess", bnumber);
+	public int boardProcess(BoardDTO board) {
+		return sql.update("board.boardprocess", board);
 	}
 
 

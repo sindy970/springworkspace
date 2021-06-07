@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 	function updatefn() {
@@ -16,20 +16,20 @@
 		if(pwd == boardpwd){
 			updateform.submit();
 		} else {
-			alert('ºñ¹Ğ¹øÈ£°¡ Æ²¸³´Ï´Ù!!');
+			alert('ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤!!');
 		}
 	}
 </script>
 </head>
 <body>
-<h2>boardupdate.jspÆÄÀÏ ÀÔ´Ï´Ù.</h2>
+<h2>boardupdate.jspíŒŒì¼ ì…ë‹ˆë‹¤.</h2>
 <form action="updateprocess" method="post" name="updateform">
-	 ±Û¹øÈ£ : <input type="text" name="bnumber" value="${update.bnumber}" readonly="readonly"><br>
-	 Á¦¸ñ : <input type="text" name="btitle"  value="${update.btitle}"><br>
-	 ºñ¹Ğ¹øÈ£ : <input type="text" name="bpassword" id="pwd"><br>
-	 ÀÛ¼ºÀÚ : <input type="text" name="bwriter" value="${update.bwriter}" readonly="readonly"><br>
-	 ³»¿ë : <input type="text" name="bcontents  "value="${update.bcontents}"><br>
-	<input type="button" value="¼öÁ¤" onclick="updatefn()">
+	 ê¸€ë²ˆí˜¸ : <input type="text" name="bnumber" value="${update.bnumber}" readonly="readonly"><br>
+	 ì œëª© : <input type="text" name="btitle" value="${update.btitle}"><br>
+	 ë¹„ë°€ë²ˆí˜¸ : <input type="text" name="bpassword" id="pwd"><br>
+	 ì‘ì„±ì : <input type="text" name="bwriter" value="${update.bwriter}" readonly="readonly"><br>
+	 ë‚´ìš© : <textarea rows="5" name="bcontents">${update.bcontents}</textarea><br>
+	<input type="button" value="ìˆ˜ì •" onclick="updatefn()">
 </form>
 </body>
 </html>

@@ -54,8 +54,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/updateprocess")
-	public ModelAndView boardprocess(@RequestParam("bnumber") int bnumber) {
-		mav = bs.boardProcess(bnumber);
+	public ModelAndView boardprocess(@ModelAttribute BoardDTO board) {
+		mav = bs.boardProcess(board);
 		return mav;
 	}
 
